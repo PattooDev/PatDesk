@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=PatDesk
+Comment=PatDesk - Widgets Eww pour Deepin
+Exec=/home/Pattoo/PatDesk/launch/patdesk.sh
+Terminal=false
+StartupNotify=false
