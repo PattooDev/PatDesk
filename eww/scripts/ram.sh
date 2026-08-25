@@ -1,3 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-free | awk '/Mem:/ { printf "%.0f", $3/$2*100 }'
+awk '
+    /^MemTotal:/     { total = $2 }
+    /^MemAvailable:/ { available = $2 }
+    END {
+        if (total > 0) {
+            printf "%.0f\n", ((total - available) * 100) / total
+        } else {
+            print 0
+        }
+    }
+' /proc/meminfo
+
