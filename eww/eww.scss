@@ -135,3 +135,69 @@
 .gpu-temp-bar trough progress {
   background: #ff7b72;
 }
+
+.network-separator {
+  margin-top: 16px;
+  margin-bottom: 13px;
+}
+
+.network-info {
+  margin-top: 3px;
+}
+
+.network-status {
+  margin: 4px 0 8px 0;
+}
+
+.network-dot {
+  margin-right: 8px;
+  font-size: 15px;
+}
+
+.network-dot.online {
+  color: #3fb950;
+}
+
+.network-dot.offline {
+  color: #f85149;
+}
+
+.network-state {
+  font-size: 14px;
+  font-weight: bold;
+  color: #f2f4f8;
+}
+
+.network-line {
+  margin: 3px 0;
+}
+
+.network-name {
+  font-size: 13px;
+  color: #c8d1dc;
+}
+
+.network-ip {
+  font-size: 13px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.network-rates {
+  margin-top: 7px;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: rgba(88, 166, 255, 0.08);
+}
+
+.download-rate {
+  font-size: 13px;
+  font-weight: bold;
+  color: #58a6ff;
+}
+
+.upload-rate {
+  font-size: 13px;
+  font-weight: bold;
+  color: #79c0ff;
+}
