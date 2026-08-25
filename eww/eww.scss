@@ -117,3 +117,21 @@
   font-size: 13px;
   color: #d29922;
 }
+
+.temp-separator {
+  margin-top: 16px;
+  margin-bottom: 13px;
+}
+
+.temp-metric {
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
+.cpu-temp-bar trough progress {
+  background: #f0883e;
+}
+
+.gpu-temp-bar trough progress {
+  background: #ff7b72;
+}
