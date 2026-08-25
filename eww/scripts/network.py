@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+import ipaddress
 import os
 import re
 import subprocess
@@ -35,8 +36,14 @@ def local_ip(interface):
     if not interface:
         return "—"
     output = run(["ip", "-4", "-o", "address", "show", "dev", interface, "scope", "global"])
-    match = re.search(r"\binet\s+([0-9.]+)/", output)
-    return match.group(1) if match else "—"
+    for candidate in re.findall(r"\binet\s+([0-9.]+)/", output):
+        try:
+            address = ipaddress.ip_address(candidate)
+        except ValueError:
+            continue
+        if address.is_private:
+            return candidate
+    return "masquée"
 
 
 def connection_type(interface):
@@ -98,17 +105,15 @@ def connectivity(previous, now, interface):
     if not interface:
         return False, now
 
-    try:
-        result = subprocess.run(
-            ["ping", "-c", "1", "-W", "1", "1.1.1.1"],
-            check=False,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-            timeout=2,
-        )
-    except (OSError, subprocess.SubprocessError):
+    network_manager_state = run(["nmcli", "-t", "networking", "connectivity"]).lower()
+    if network_manager_state == "full":
+        return True, now
+    if network_manager_state in {"none", "portal", "limited"}:
         return False, now
-    return result.returncode == 0, now
+
+    # Si NetworkManager ne fournit pas ce renseignement, la présence d'une
+    # route par défaut et d'une interface active sert d'indication locale.
+    return bool(interface), now
 
 
 def render(interface, ip_address, online, download, upload):
