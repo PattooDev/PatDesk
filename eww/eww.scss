@@ -201,3 +201,53 @@
   font-weight: bold;
   color: #79c0ff;
 }
+
+.shortcuts-separator {
+  margin-top: 16px;
+  margin-bottom: 13px;
+}
+
+.shortcut-list {
+  margin-top: 5px;
+}
+
+.shortcut-button {
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.shortcut-button:hover {
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.shortcut-button:active {
+  opacity: 0.72;
+}
+
+.patsecure-button {
+  background: rgba(163, 113, 247, 0.20);
+}
+
+.patsecure-button:hover {
+  background: rgba(163, 113, 247, 0.34);
+}
+
+.terminal-button {
+  background: rgba(88, 166, 255, 0.20);
+}
+
+.terminal-button:hover {
+  background: rgba(88, 166, 255, 0.34);
+}
+
+.files-button {
+  background: rgba(63, 185, 80, 0.20);
+}
+
+.files-button:hover {
+  background: rgba(63, 185, 80, 0.34);
+}
