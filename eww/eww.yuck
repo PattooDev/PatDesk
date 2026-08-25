@@ -26,6 +26,10 @@
   :interval "5s"
   `$HOME/.config/patdesk/scripts/gpu-temp.sh`)
 
+(defpoll network
+  :interval "2s"
+  `$HOME/.config/patdesk/scripts/network.py`)
+
 (defwidget metric [name value bar-class]
   (box
     :orientation "vertical"
@@ -87,7 +91,7 @@
     :x "-120px"
     :y "20px"
     :width "420px"
-    :height "900px")
+    :height "1040px")
 
   :stacking "bg"
   :windowtype "desktop"
@@ -139,4 +143,15 @@
       :space-evenly false
 
       (temp-metric :name "PROCESSEUR" :value cpu_temp :bar-class "cpu-temp-bar")
-      (temp-metric :name "RTX 3060" :value gpu_temp :bar-class "gpu-temp-bar"))))
+      (temp-metric :name "RTX 3060" :value gpu_temp :bar-class "gpu-temp-bar"))
+
+    (box :class "separator network-separator")
+
+    (label
+      :class "section-title"
+      :halign "start"
+      :text "RÉSEAU")
+
+    (literal
+      :class "network-content"
+      :content network)))
