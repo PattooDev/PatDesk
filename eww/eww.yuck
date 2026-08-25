@@ -91,7 +91,7 @@
     :x "-120px"
     :y "20px"
     :width "420px"
-    :height "1040px")
+    :height "1160px")
 
   :stacking "bg"
   :windowtype "desktop"
@@ -154,4 +154,35 @@
 
     (literal
       :class "network-content"
-      :content network)))
+      :content network)
+
+    (box :class "separator shortcuts-separator")
+
+    (label
+      :class "section-title"
+      :halign "start"
+      :text "RACCOURCIS")
+
+    (box
+      :orientation "horizontal"
+      :class "shortcut-list"
+      :space-evenly true
+      :spacing 8
+
+      (button
+        :class "shortcut-button patsecure-button"
+        :tooltip "Ouvrir PatSecure"
+        :onclick "bash $HOME/PatSecure/launch/patsecure-launcher.sh"
+        (label :text "PatSecure"))
+
+      (button
+        :class "shortcut-button terminal-button"
+        :tooltip "Ouvrir Deepin Terminal"
+        :onclick "deepin-terminal"
+        (label :text "Terminal"))
+
+      (button
+        :class "shortcut-button files-button"
+        :tooltip "Ouvrir le dossier personnel"
+        :onclick "dde-file-manager $HOME"
+        (label :text "Fichiers")))))
