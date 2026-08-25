@@ -1,7 +1,8 @@
 [Desktop Entry]
 Type=Application
 Name=PatDesk
-Comment=PatDesk - Widgets Eww pour Deepin
-Exec=/home/Pattoo/PatDesk/launch/patdesk.sh
+Comment=Tableau de bord système PatDesk pour Deepin
+Exec=sh -c 'exec "$HOME/.config/patdesk/launch.sh"'
 Terminal=false
 StartupNotify=false
+
