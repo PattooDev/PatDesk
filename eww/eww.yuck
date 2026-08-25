@@ -18,6 +18,14 @@
   :interval "30s"
   `$HOME/.config/patdesk/scripts/disks.py`)
 
+(defpoll cpu_temp
+  :interval "5s"
+  `$HOME/.config/patdesk/scripts/cpu-temp.sh`)
+
+(defpoll gpu_temp
+  :interval "5s"
+  `$HOME/.config/patdesk/scripts/gpu-temp.sh`)
+
 (defwidget metric [name value bar-class]
   (box
     :orientation "vertical"
@@ -45,6 +53,33 @@
       :value value
       :orientation "horizontal")))
 
+(defwidget temp-metric [name value bar-class]
+  (box
+    :orientation "vertical"
+    :class "metric temp-metric"
+    :space-evenly false
+
+    (box
+      :orientation "horizontal"
+      :class "metric-row"
+      :space-evenly false
+
+      (label
+        :class "metric-name"
+        :halign "start"
+        :hexpand true
+        :text name)
+
+      (label
+        :class "metric-value"
+        :halign "end"
+        :text "${value}°C"))
+
+    (progress
+      :class "metric-bar ${bar-class}"
+      :value value
+      :orientation "horizontal")))
+
 (defwindow patdesk
   :monitor "DP-0"
   :geometry (geometry
@@ -52,7 +87,7 @@
     :x "-120px"
     :y "20px"
     :width "420px"
-    :height "760px")
+    :height "900px")
 
   :stacking "bg"
   :windowtype "desktop"
@@ -89,5 +124,19 @@
 
     (literal
       :class "disk-content"
-      :content disks)))
+      :content disks)
 
+    (box :class "separator temp-separator")
+
+    (label
+      :class "section-title"
+      :halign "start"
+      :text "TEMPÉRATURES")
+
+    (box
+      :orientation "vertical"
+      :class "temperature-list"
+      :space-evenly false
+
+      (temp-metric :name "PROCESSEUR" :value cpu_temp :bar-class "cpu-temp-bar")
+      (temp-metric :name "RTX 3060" :value gpu_temp :bar-class "gpu-temp-bar"))))
