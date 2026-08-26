@@ -1,0 +1,4 @@
+PatDesk 0.4.0
+Date : 26 août 2026
+Branche : patdesk-maj-deepin
+Statut : validée manuellement et prête à fusionner dans main.
