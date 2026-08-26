@@ -51,12 +51,17 @@ Ce fichier est le carnet de bord commun à ChatGPT Work et au chat normal. Il do
 
 PatDesk doit rester local. Aucune adresse IP publique, donnée personnelle, télémétrie, cible distante fixe ou information exploitable de l'extérieur ne doit être ajoutée au code, à la documentation, au site ou aux captures.
 
+## Publication du site
+
+- La fiche PatDesk du site [Les projets de Pattoo](https://projets-pattoo.patrickventresque.chatgpt.site) a été mise à jour et sa publication vérifiée le **26 août 2026**.
+- Elle présente la version 0.2.0, le lien GitHub et les fonctions validées.
+- Aucune adresse IP publique ni donnée exploitable de l'extérieur n'y a été publiée.
+
 ## Prochaines actions connues
 
 1. Utiliser un même projet ChatGPT nommé **PatDesk** pour les conversations Chat et Work.
 2. Garder ce dépôt et ce fichier comme source de vérité lorsque Work atteint son quota.
-3. Mettre à jour la fiche PatDesk du site **Les projets de Pattoo** avec la version 0.2.0, son lien GitHub et ses fonctions validées, sans publier d'adresse IP.
-4. Avant la prochaine évolution fonctionnelle, choisir une tâche précise puis la développer sur une nouvelle branche de test.
+3. Avant la prochaine évolution fonctionnelle, choisir une tâche précise puis la développer sur une nouvelle branche de test.
 
 ## Règle de fin de session
 
