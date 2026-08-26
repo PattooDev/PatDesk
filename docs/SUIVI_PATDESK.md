@@ -57,10 +57,16 @@ PatDesk doit rester local. Aucune adresse IP publique, donnée personnelle, tél
 - Elle présente la version 0.2.0, le lien GitHub et les fonctions validées.
 - Aucune adresse IP publique ni donnée exploitable de l'extérieur n'y a été publiée.
 
+## Sauvegarde GitHub
+
+- La branche d'archive `snapshot-v0.2.0` a été créée le **26 août 2026**.
+- Elle pointe sur le commit `ac450f8537cd06720076561732de259455f84be6`, qui contient PatDesk 0.2.0, les trois boutons validés, la documentation de continuité et la mention de publication du site.
+- Cette branche sert uniquement de point de restauration. Ne pas développer dessus, la fusionner ou la supprimer sans demande explicite de Pattoo.
+
 ## Prochaines actions connues
 
-1. Utiliser un même projet ChatGPT nommé **PatDesk** pour les conversations Chat et Work.
-2. Garder ce dépôt et ce fichier comme source de vérité lorsque Work atteint son quota.
+1. Le projet ChatGPT **PatDesk** est créé et cette conversation y est rangée ; lancer les futurs Chats et travaux Work depuis ce projet.
+2. Garder `main`, `snapshot-v0.2.0` et ce fichier comme sources de vérité lorsque Work atteint son quota.
 3. Avant la prochaine évolution fonctionnelle, choisir une tâche précise puis la développer sur une nouvelle branche de test.
 
 ## Règle de fin de session
