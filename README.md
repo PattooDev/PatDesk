@@ -79,6 +79,7 @@ Ces valeurs se modifient dans `eww/eww.yuck` pour s'adapter à une autre organis
 
 ```text
 PatDesk/
+├── AGENTS.md
 ├── README.md
 ├── CHANGELOG.md
 ├── eww/
@@ -96,8 +97,13 @@ PatDesk/
 ├── autostart/
 │   └── patdesk.desktop
 └── docs/
-    └── INSTALL.md
+    ├── INSTALL.md
+    └── SUIVI_PATDESK.md
 ```
+
+## Continuer le projet sans perdre le fil
+
+Le fichier [`docs/SUIVI_PATDESK.md`](docs/SUIVI_PATDESK.md) conserve le point de reprise commun entre ChatGPT Work et le chat normal. Les consignes de travail et de sécurité destinées aux prochaines sessions sont dans [`AGENTS.md`](AGENTS.md).
 
 ## Projet
 
