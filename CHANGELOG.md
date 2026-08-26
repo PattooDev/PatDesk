@@ -1,5 +1,27 @@
 # Historique des versions de PatDesk
 
+## [0.3.0] — 26 août 2026
+
+### Ajouté
+
+- Alertes visuelles de remplissage des disques : orange à partir de 75 %, rouge à partir de 90 %.
+- Alertes de température du processeur : orange à partir de 70 °C, rouge à partir de 85 °C.
+- Alertes de température de la RTX 3060 : orange à partir de 75 °C, rouge à partir de 85 °C.
+- Mise en évidence rouge de l'état et des débits lorsque le réseau est indisponible.
+
+### Validé
+
+- Affichage Eww sans erreur sous Deepin 25.
+- SSD à 84 % correctement affiché en orange.
+- Températures normales correctement affichées en vert.
+- Réseau connecté correctement affiché en vert.
+- Trois raccourcis toujours fonctionnels, dont PatSecure pour les mises à jour de Deepin.
+
+### Confidentialité et sécurité
+
+- Fonctionnement toujours entièrement local.
+- Aucun port, serveur, appel Internet supplémentaire, télémétrie ou adresse IP publique ajouté.
+
 ## [0.2.0] — 25 août 2026
 
 ### Ajouté
