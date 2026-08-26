@@ -297,6 +297,10 @@
   margin-top: 5px;
 }
 
+.shortcut-list-web {
+  margin-top: 8px;
+}
+
 .shortcut-button {
   padding: 10px 12px;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -336,4 +340,20 @@
 
 .files-button:hover {
   background: rgba(63, 185, 80, 0.34);
+}
+
+.site-button {
+  background: rgba(210, 153, 34, 0.20);
+}
+
+.site-button:hover {
+  background: rgba(210, 153, 34, 0.34);
+}
+
+.chatgpt-button {
+  background: rgba(46, 160, 135, 0.20);
+}
+
+.chatgpt-button:hover {
+  background: rgba(46, 160, 135, 0.34);
 }
