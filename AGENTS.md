@@ -12,9 +12,10 @@ Ces consignes s'appliquent à tout le dépôt.
 
 - Dépôt : `PattooDev/PatDesk`.
 - Branche publiée : `main`.
-- Version publiée au 26 août 2026 : `v0.3.0`.
+- Version préparée pour publication au 26 août 2026 : `v0.4.0`.
 - `docs/SUIVI_PATDESK.md` contient l'état courant, les validations et la prochaine étape.
 - La branche `patdesk-alertes-systeme` contient les alertes visuelles validées le 26 août 2026 et doit être considérée comme historique après sa fusion dans `main`.
+- La branche `patdesk-maj-deepin` contient le module de statut des mises à jour validé le 26 août 2026 ; après sa fusion dans `main`, elle devient historique.
 - La branche `patdesk-disques-test` est une branche historique. Juste avant l'ajout des documents de continuité le 26 août 2026, son code était identique à celui de `main` malgré un historique divergent. `main` contient maintenant ces documents en plus. Ne pas fusionner ni supprimer cette branche sans demande explicite.
 
 ## Méthode de travail obligatoire
@@ -38,6 +39,7 @@ Ces consignes s'appliquent à tout le dépôt.
 - Ne jamais écrire en dur une adresse personnelle, un jeton, un mot de passe, un identifiant privé ou un secret.
 - Ne jamais publier de capture, journal ou configuration contenant une donnée exploitable de l'extérieur.
 - Préserver le fonctionnement entièrement local de PatDesk.
+- Le module de mises à jour doit rester informatif : pas de `apt update`, pas d'installation automatique et pas d'élévation de privilèges depuis PatDesk.
 
 ## Environnement de référence
 
@@ -51,5 +53,5 @@ Ces consignes s'appliquent à tout le dépôt.
 
 - Python : compilation des scripts `.py`.
 - Bash : `bash -n` sur les scripts `.sh`.
-- Sécurité : absence d'appel externe, de serveur, de port ouvert, de secret et d'IP publique.
+- Sécurité : absence d'appel externe ajouté, de serveur, de port ouvert, de secret et d'IP publique.
 - Interface : démarrage Eww, affichage des rubriques et test manuel des boutons sur la machine de Pattoo.
