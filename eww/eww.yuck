@@ -200,4 +200,22 @@
         :class "shortcut-button files-button"
         :tooltip "Ouvrir le dossier personnel"
         :onclick "dde-file-manager $HOME"
-        (label :text "Fichiers")))))
+        (label :text "Fichiers")))
+
+    (box
+      :orientation "horizontal"
+      :class "shortcut-list shortcut-list-web"
+      :space-evenly true
+      :spacing 8
+
+      (button
+        :class "shortcut-button site-button"
+        :tooltip "Ouvrir Les projets de Pattoo"
+        :onclick "xdg-open 'https://les-projets-de-pattoo.vercel.app'"
+        (label :text "Mon site"))
+
+      (button
+        :class "shortcut-button chatgpt-button"
+        :tooltip "Ouvrir ChatGPT"
+        :onclick "xdg-open 'https://chatgpt.com/'"
+        (label :text "ChatGPT")))))
