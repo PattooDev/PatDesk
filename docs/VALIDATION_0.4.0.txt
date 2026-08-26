@@ -1,0 +1,1 @@
+Validation manuelle confirmée par Pattoo le 26 août 2026 sous Deepin 25 : bloc MISES À JOUR affiché correctement, PatDesk démarre sans erreur, boutons PatSecure/Terminal/Fichiers fonctionnels.
