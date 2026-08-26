@@ -6,7 +6,7 @@ Il propose une alternative légère et personnalisable à Rainmeter, directement
 
 ## Version actuelle
 
-**PatDesk v0.3.0 — 26 août 2026**
+**PatDesk v0.4.0 — 26 août 2026**
 
 ## Fonctions
 
@@ -18,6 +18,7 @@ Il propose une alternative légère et personnalisable à Rainmeter, directement
 - alertes visuelles vertes, orange et rouges selon le remplissage des disques et les températures ;
 - état de la connexion réseau ;
 - type d'interface, adresse IPv4 locale et débits descendant/montant ;
+- état des mises à jour disponibles d'après le cache APT local, sans lancer `apt update` ;
 - raccourcis vers PatSecure, Deepin Terminal et le gestionnaire de fichiers ;
 - lancement automatique avec Deepin.
 
@@ -30,6 +31,21 @@ Il propose une alternative légère et personnalisable à Rainmeter, directement
 
 Ces alertes ont été validées visuellement sous Deepin 25 le 26 août 2026.
 
+## Mises à jour Deepin
+
+PatDesk affiche un bloc **MISES À JOUR** qui indique soit `Système à jour`, soit le nombre de mises à jour disponibles, soit `État indisponible`.
+
+Ce contrôle :
+
+- utilise uniquement `apt list --upgradable` ;
+- s'appuie sur le cache APT local ;
+- ne lance pas `apt update` ;
+- n'installe rien ;
+- ne demande pas les droits administrateur ;
+- est actualisé dans Eww toutes les 10 minutes.
+
+Le module a été validé manuellement sous Deepin 25 le 26 août 2026.
+
 ## Confidentialité et sécurité réseau
 
 PatDesk fonctionne localement :
@@ -41,7 +57,8 @@ PatDesk fonctionne localement :
 - aucun port réseau n'est ouvert ;
 - aucun serveur distant n'est lancé ;
 - aucune télémétrie ou donnée personnelle n'est envoyée ;
-- l'état d'Internet provient des informations locales de NetworkManager.
+- l'état d'Internet provient des informations locales de NetworkManager ;
+- le module de mises à jour ne lance aucune actualisation réseau ni installation.
 
 ## Environnement testé
 
@@ -101,7 +118,8 @@ PatDesk/
 │       ├── disks.py
 │       ├── cpu-temp.sh
 │       ├── gpu-temp.sh
-│       └── network.py
+│       ├── network.py
+│       └── updates.py
 ├── launch/
 │   └── patdesk.sh
 ├── autostart/
