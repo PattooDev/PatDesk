@@ -13,7 +13,7 @@ Ce fichier est le carnet de bord commun à ChatGPT Work et au chat normal. Il do
 - Dépôt : [PattooDev/PatDesk](https://github.com/PattooDev/PatDesk)
 - Version : **0.2.0**
 - Branche publiée : `main`
-- Commit publié : `424f1ced209a4628439f8da4e37bbb9692158f9f`
+- Commit fonctionnel publié : `424f1ced209a4628439f8da4e37bbb9692158f9f`
 - Arbre Git vérifié : `cd8691bd536e7a6b08ef4f4f529bc1f9ea08792e`
 - Date de publication : **25 août 2026**
 
@@ -21,7 +21,8 @@ Ce fichier est le carnet de bord commun à ChatGPT Work et au chat normal. Il do
 
 - Branche : `patdesk-disques-test`
 - Dernier commit : `cb6ca7b35e47a2602dad0f8cc8c98a715c54bf72`
-- Son contenu complet est identique à celui de `main` au 26 août 2026.
+- Juste avant l'ajout des documents de continuité le 26 août 2026, son code était identique à celui de `main`.
+- `main` contient désormais `AGENTS.md`, ce carnet de bord et les liens ajoutés au README ; il n'existe toujours aucune différence fonctionnelle dans PatDesk v0.2.0.
 - Les historiques divergent parce que `main` a reçu un commit de publication unique. Il ne faut donc pas fusionner cette branche par réflexe.
 
 ## Fonctions terminées
@@ -38,7 +39,7 @@ Ce fichier est le carnet de bord commun à ChatGPT Work et au chat normal. Il do
 ## Validations déjà obtenues
 
 - Pattoo a confirmé le **25 août 2026** que les trois raccourcis fonctionnent.
-- Le **26 août 2026**, les deux branches ont été comparées : tous les fichiers et leurs empreintes sont identiques.
+- Le **26 août 2026**, les deux branches ont été comparées avant l'ajout de ce carnet : tous les fichiers fonctionnels et leurs empreintes étaient identiques.
 - Le script réseau a été relu :
   - il utilise seulement les informations locales de Linux et NetworkManager ;
   - il ne contacte aucun service Internet ;

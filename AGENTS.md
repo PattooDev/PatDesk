@@ -14,7 +14,7 @@ Ces consignes s'appliquent à tout le dépôt.
 - Branche publiée : `main`.
 - Version publiée au 26 août 2026 : `v0.2.0`.
 - `docs/SUIVI_PATDESK.md` contient l'état courant, les validations et la prochaine étape.
-- La branche `patdesk-disques-test` est une branche historique. Au 26 août 2026, son arbre Git est identique à celui de `main`, malgré un historique divergent. Ne pas la fusionner ni la supprimer sans demande explicite.
+- La branche `patdesk-disques-test` est une branche historique. Juste avant l'ajout des documents de continuité le 26 août 2026, son code était identique à celui de `main` malgré un historique divergent. `main` contient maintenant ces documents en plus. Ne pas fusionner ni supprimer cette branche sans demande explicite.
 
 ## Méthode de travail obligatoire
 
