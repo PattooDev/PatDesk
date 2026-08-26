@@ -98,7 +98,7 @@
     :height "1260px")
 
   :stacking "bg"
-  :windowtype "desktop"
+  :windowtype "normal"
 
   (box
     :orientation "vertical"
