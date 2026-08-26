@@ -6,7 +6,7 @@ Il propose une alternative légère et personnalisable à Rainmeter, directement
 
 ## Version actuelle
 
-**PatDesk v0.2.0 — 25 août 2026**
+**PatDesk v0.3.0 — 26 août 2026**
 
 ## Fonctions
 
@@ -15,10 +15,20 @@ Il propose une alternative légère et personnalisable à Rainmeter, directement
 - liste automatique des disques physiques connectés ;
 - capacité et taux d'occupation des disques montés ;
 - températures du processeur Intel et de la carte graphique NVIDIA ;
+- alertes visuelles vertes, orange et rouges selon le remplissage des disques et les températures ;
 - état de la connexion réseau ;
 - type d'interface, adresse IPv4 locale et débits descendant/montant ;
 - raccourcis vers PatSecure, Deepin Terminal et le gestionnaire de fichiers ;
 - lancement automatique avec Deepin.
+
+## Alertes visuelles
+
+- Disques : orange à partir de 75 % d'occupation, rouge à partir de 90 %.
+- Processeur : orange à partir de 70 °C, rouge à partir de 85 °C.
+- RTX 3060 : orange à partir de 75 °C, rouge à partir de 85 °C.
+- Réseau indisponible : état et débits affichés en rouge.
+
+Ces alertes ont été validées visuellement sous Deepin 25 le 26 août 2026.
 
 ## Confidentialité et sécurité réseau
 
