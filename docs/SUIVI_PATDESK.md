@@ -74,14 +74,19 @@ PatDesk doit rester local. Aucune adresse IP publique, donnée personnelle, tél
   - RTX 3060 : orange à partir de 75 °C, rouge à partir de 85 °C ;
   - réseau indisponible : état et débits affichés en rouge.
 - Validations automatiques effectuées : compilation Python, contrôle des seuils, équilibre des sorties Yuck et absence d'appel Internet ou de serveur ajouté.
-- **Validation visuelle Eww encore requise sur le PC Deepin de Pattoo.**
-- Ne pas fusionner dans `main` et ne pas publier sur le site avant cette validation manuelle.
+- Validation visuelle effectuée par Pattoo le **26 août 2026** sur Deepin 25 :
+  - Eww démarre sans erreur ;
+  - le SSD à 84 % apparaît en orange ;
+  - les températures normales apparaissent en vert ;
+  - le réseau connecté apparaît en vert ;
+  - les trois raccourcis restent fonctionnels, dont PatSecure utilisé pour les mises à jour de Deepin.
+- La branche est validée et prête à être fusionnée dans `main`.
 
 ## Prochaines actions connues
 
-1. Installer temporairement les quatre fichiers de la branche `patdesk-alertes-systeme` sur le PC Deepin de Pattoo.
-2. Relancer PatDesk et vérifier l'affichage normal, les trois boutons et l'absence d'erreur Eww.
-3. Après validation manuelle, fusionner dans `main`, mettre à jour la version et publier la fiche du site.
+1. Fusionner la branche `patdesk-alertes-systeme` dans `main`.
+2. Noter le commit publié de PatDesk 0.3.0 et créer un point de restauration.
+3. Mettre à jour et publier la fiche PatDesk du site.
 
 ## Règle de fin de session
 
