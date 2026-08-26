@@ -1,5 +1,28 @@
 # Historique des versions de PatDesk
 
+## [0.4.0] — 26 août 2026
+
+### Ajouté
+
+- Nouveau bloc **MISES À JOUR** dans PatDesk.
+- Détection du nombre de paquets pouvant être mis à niveau à partir du cache APT local.
+- Affichage de `Système à jour`, du nombre de mises à jour disponibles ou de `État indisponible`.
+- Actualisation automatique du bloc toutes les 10 minutes.
+
+### Validé
+
+- `updates.py` s'exécute correctement sous Deepin 25.
+- PatDesk redémarre sans erreur avec le nouveau bloc.
+- Le rendu reste propre et sans débordement.
+- Les raccourcis PatSecure, Terminal et Fichiers restent tous fonctionnels.
+
+### Confidentialité et sécurité
+
+- Aucun `apt update` lancé automatiquement.
+- Aucune installation automatique.
+- Aucun droit administrateur demandé par le module.
+- Aucun port, serveur, télémétrie ou recherche d'adresse IP publique ajouté.
+
 ## [0.3.0] — 26 août 2026
 
 ### Ajouté
