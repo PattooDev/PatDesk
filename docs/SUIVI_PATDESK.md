@@ -62,16 +62,32 @@ Branche de développement des alertes visuelles, désormais validée et fusionn�
 - `snapshot-v0.3.0` : créé le **26 août 2026** à partir du commit publié `169fdbf4ec8422b96bb9e5c97fc741c222b60e39`.
 - Les branches `snapshot-*` servent uniquement de points de restauration. Ne pas développer dessus, les fusionner ou les supprimer sans demande explicite de Pattoo.
 
+## Travail en cours — statut des mises à jour Deepin
+
+- Branche de test : `patdesk-maj-deepin`.
+- Base : `main` au commit `bfbb7b62ae03acd2ed05e41d77d46560e216bd68`.
+- Première version préparée le **26 août 2026**.
+- Fichiers concernés :
+  - `eww/scripts/updates.py` ;
+  - `eww/eww.yuck` ;
+  - `eww/eww.scss`.
+- Fonction prévue : afficher dans PatDesk un bloc **MISES À JOUR** indiquant soit `Système à jour`, soit le nombre de mises à jour disponibles, soit `État indisponible`.
+- Le script utilise uniquement `apt list --upgradable` avec le cache APT local.
+- Il ne lance jamais `apt update`, n'installe rien, ne demande pas les droits administrateur et n'ajoute aucun appel réseau.
+- Actualisation Eww prévue toutes les 10 minutes.
+- La première version n'est **pas encore validée visuellement** sur le PC Deepin de Pattoo.
+
 ## Publication du site
 
 Le site **Les projets de Pattoo** existe et présente PatDesk. Après la publication de PatDesk 0.3.0, la fiche du site doit être vérifiée et, si nécessaire, mise à jour pour annoncer la version 0.3.0 et les alertes système validées. Ne publier aucune IP publique ni donnée exploitable de l'extérieur.
 
 ## Prochaine action précise
 
-1. Vérifier / mettre à jour la fiche PatDesk du site pour **v0.3.0**.
-2. Choisir la prochaine amélioration PatDesk.
-3. Créer une branche de test dédiée à cette amélioration avant toute modification fonctionnelle.
-4. Faire tester le résultat sous Deepin avant toute fusion dans `main`.
+1. Tester `patdesk-maj-deepin` sur le PC Deepin de Pattoo.
+2. Vérifier que PatDesk démarre sans erreur et que le bloc **MISES À JOUR** s'affiche correctement.
+3. Vérifier que les trois raccourcis restent fonctionnels.
+4. Ne fusionner la branche dans `main` qu'après validation manuelle.
+5. Vérifier / mettre à jour ensuite la fiche du site pour **v0.3.0** lorsque Work est de nouveau disponible.
 
 ## Règle de fin de session
 
