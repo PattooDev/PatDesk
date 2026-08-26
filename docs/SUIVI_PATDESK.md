@@ -63,11 +63,25 @@ PatDesk doit rester local. Aucune adresse IP publique, donnée personnelle, tél
 - Elle pointe sur le commit `ac450f8537cd06720076561732de259455f84be6`, qui contient PatDesk 0.2.0, les trois boutons validés, la documentation de continuité et la mention de publication du site.
 - Cette branche sert uniquement de point de restauration. Ne pas développer dessus, la fusionner ou la supprimer sans demande explicite de Pattoo.
 
+## Travail en cours — alertes système
+
+- Branche de test : `patdesk-alertes-systeme`.
+- Première version préparée le **26 août 2026**.
+- Commit de la première version : `ea8e1c25ae52ce255840ba335c4bff9ef5b79d52`.
+- Alertes prévues :
+  - disques : orange à partir de 75 %, rouge à partir de 90 % ;
+  - processeur : orange à partir de 70 °C, rouge à partir de 85 °C ;
+  - RTX 3060 : orange à partir de 75 °C, rouge à partir de 85 °C ;
+  - réseau indisponible : état et débits affichés en rouge.
+- Validations automatiques effectuées : compilation Python, contrôle des seuils, équilibre des sorties Yuck et absence d'appel Internet ou de serveur ajouté.
+- **Validation visuelle Eww encore requise sur le PC Deepin de Pattoo.**
+- Ne pas fusionner dans `main` et ne pas publier sur le site avant cette validation manuelle.
+
 ## Prochaines actions connues
 
-1. Le projet ChatGPT **PatDesk** est créé et cette conversation y est rangée ; lancer les futurs Chats et travaux Work depuis ce projet.
-2. Garder `main`, `snapshot-v0.2.0` et ce fichier comme sources de vérité lorsque Work atteint son quota.
-3. Avant la prochaine évolution fonctionnelle, choisir une tâche précise puis la développer sur une nouvelle branche de test.
+1. Installer temporairement les quatre fichiers de la branche `patdesk-alertes-systeme` sur le PC Deepin de Pattoo.
+2. Relancer PatDesk et vérifier l'affichage normal, les trois boutons et l'absence d'erreur Eww.
+3. Après validation manuelle, fusionner dans `main`, mettre à jour la version et publier la fiche du site.
 
 ## Règle de fin de session
 
