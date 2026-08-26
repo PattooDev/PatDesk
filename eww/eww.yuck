@@ -30,6 +30,10 @@
   :interval "2s"
   `$HOME/.config/patdesk/scripts/network.py`)
 
+(defpoll updates
+  :interval "10m"
+  `$HOME/.config/patdesk/scripts/updates.py`)
+
 (defwidget metric [name value bar-class]
   (box
     :orientation "vertical"
@@ -91,7 +95,7 @@
     :x "-120px"
     :y "20px"
     :width "420px"
-    :height "1160px")
+    :height "1260px")
 
   :stacking "bg"
   :windowtype "desktop"
@@ -155,6 +159,17 @@
     (literal
       :class "network-content"
       :content network)
+
+    (box :class "separator updates-separator")
+
+    (label
+      :class "section-title"
+      :halign "start"
+      :text "MISES À JOUR")
+
+    (literal
+      :class "updates-content"
+      :content updates)
 
     (box :class "separator shortcuts-separator")
 
