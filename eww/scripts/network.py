@@ -111,8 +111,6 @@ def connectivity(previous, now, interface):
     if network_manager_state in {"none", "portal", "limited"}:
         return False, now
 
-    # Si NetworkManager ne fournit pas ce renseignement, la présence d'une
-    # route par défaut et d'une interface active sert d'indication locale.
     return bool(interface), now
 
 
@@ -122,7 +120,7 @@ def render(interface, ip_address, online, download, upload):
     link_name = connection_type(interface)
 
     return (
-        '(box :orientation "vertical" :class "network-info" :space-evenly false '
+        f'(box :orientation "vertical" :class "network-info {status_class}" :space-evenly false '
         '(box :orientation "horizontal" :class "network-status" :space-evenly false '
         f'(label :class "network-dot {status_class}" :text "●") '
         f'(label :class "network-state" :halign "start" :text {yuck_string(status_text)})) '

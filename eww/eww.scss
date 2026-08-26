@@ -109,7 +109,31 @@
 
 .disk-bar trough progress {
   min-height: 5px;
+}
+
+.disk-bar.disk-normal trough progress {
   background: #3fb950;
+}
+
+.disk-bar.disk-warning trough progress {
+  background: #d29922;
+}
+
+.disk-bar.disk-critical trough progress {
+  background: #f85149;
+}
+
+.disk-row.disk-warning .disk-value {
+  color: #e3b341;
+}
+
+.disk-row.disk-critical .disk-name,
+.disk-row.disk-critical .disk-value {
+  color: #ff7b72;
+}
+
+.disk-row.disk-unmounted .disk-value {
+  color: #8b949e;
 }
 
 .disk-empty {
@@ -128,12 +152,25 @@
   margin-bottom: 7px;
 }
 
-.cpu-temp-bar trough progress {
-  background: #f0883e;
+.temp-metric.alert-normal .metric-bar trough progress {
+  background: #3fb950;
 }
 
-.gpu-temp-bar trough progress {
-  background: #ff7b72;
+.temp-metric.alert-warning .metric-bar trough progress {
+  background: #d29922;
+}
+
+.temp-metric.alert-critical .metric-bar trough progress {
+  background: #f85149;
+}
+
+.temp-metric.alert-warning .metric-value {
+  color: #e3b341;
+}
+
+.temp-metric.alert-critical .metric-name,
+.temp-metric.alert-critical .metric-value {
+  color: #ff7b72;
 }
 
 .network-separator {
@@ -162,6 +199,14 @@
   color: #f85149;
 }
 
+.network-info.online .network-state {
+  color: #3fb950;
+}
+
+.network-info.offline .network-state {
+  color: #ff7b72;
+}
+
 .network-state {
   font-size: 14px;
   font-weight: bold;
@@ -188,6 +233,15 @@
   padding: 8px 10px;
   border-radius: 9px;
   background: rgba(88, 166, 255, 0.08);
+}
+
+.network-info.offline .network-rates {
+  background: rgba(248, 81, 73, 0.10);
+}
+
+.network-info.offline .download-rate,
+.network-info.offline .upload-rate {
+  color: #ff7b72;
 }
 
 .download-rate {

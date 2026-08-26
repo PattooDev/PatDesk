@@ -91,6 +91,16 @@ def usage_for_nodes(nodes):
     return max(0, min(100, round((used * 100) / total)))
 
 
+def alert_class(usage):
+    if usage is None:
+        return "disk-unmounted"
+    if usage >= 90:
+        return "disk-critical"
+    if usage >= 75:
+        return "disk-warning"
+    return "disk-normal"
+
+
 def load_disks():
     command = [
         "lsblk",
@@ -113,6 +123,7 @@ def disk_widget(disk):
     name = friendly_name(disk, mounted_nodes)
     capacity = format_capacity(disk.get("size"))
     usage = usage_for_nodes(mounted_nodes)
+    state_class = alert_class(usage)
 
     if usage is None:
         detail = f"non monté · {capacity}"
@@ -122,11 +133,11 @@ def disk_widget(disk):
         progress = usage
 
     return (
-        '(box :orientation "vertical" :class "disk-row" :space-evenly false '
+        f'(box :orientation "vertical" :class "disk-row {state_class}" :space-evenly false '
         '(box :orientation "horizontal" :class "disk-line" :space-evenly false '
         f'(label :class "disk-name" :halign "start" :hexpand true :limit-width 24 :text {yuck_string(name)}) '
         f'(label :class "disk-value" :halign "end" :text {yuck_string(detail)})) '
-        f'(progress :class "metric-bar disk-bar" :value {progress} :orientation "horizontal"))'
+        f'(progress :class "metric-bar disk-bar {state_class}" :value {progress} :orientation "horizontal"))'
     )
 
 
@@ -152,4 +163,3 @@ def main():
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

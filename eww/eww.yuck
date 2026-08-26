@@ -57,10 +57,10 @@
       :value value
       :orientation "horizontal")))
 
-(defwidget temp-metric [name value bar-class]
+(defwidget temp-metric [name value bar-class warning critical]
   (box
     :orientation "vertical"
-    :class "metric temp-metric"
+    :class "metric temp-metric ${value >= critical ? 'alert-critical' : value >= warning ? 'alert-warning' : 'alert-normal'}"
     :space-evenly false
 
     (box
@@ -142,8 +142,8 @@
       :class "temperature-list"
       :space-evenly false
 
-      (temp-metric :name "PROCESSEUR" :value cpu_temp :bar-class "cpu-temp-bar")
-      (temp-metric :name "RTX 3060" :value gpu_temp :bar-class "gpu-temp-bar"))
+      (temp-metric :name "PROCESSEUR" :value cpu_temp :bar-class "cpu-temp-bar" :warning 70 :critical 85)
+      (temp-metric :name "RTX 3060" :value gpu_temp :bar-class "gpu-temp-bar" :warning 75 :critical 85))
 
     (box :class "separator network-separator")
 
