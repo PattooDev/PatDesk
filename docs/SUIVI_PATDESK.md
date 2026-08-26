@@ -66,28 +66,40 @@ Branche de développement des alertes visuelles, désormais validée et fusionn�
 
 - Branche de test : `patdesk-maj-deepin`.
 - Base : `main` au commit `bfbb7b62ae03acd2ed05e41d77d46560e216bd68`.
-- Première version préparée le **26 août 2026**.
+- Commit de branche testé : `818e7d455c8cd6aedad805238728b5cfc950e2ec`.
 - Fichiers concernés :
   - `eww/scripts/updates.py` ;
   - `eww/eww.yuck` ;
   - `eww/eww.scss`.
-- Fonction prévue : afficher dans PatDesk un bloc **MISES À JOUR** indiquant soit `Système à jour`, soit le nombre de mises à jour disponibles, soit `État indisponible`.
+- Fonction : afficher dans PatDesk un bloc **MISES À JOUR** indiquant soit `Système à jour`, soit le nombre de mises à jour disponibles, soit `État indisponible`.
 - Le script utilise uniquement `apt list --upgradable` avec le cache APT local.
 - Il ne lance jamais `apt update`, n'installe rien, ne demande pas les droits administrateur et n'ajoute aucun appel réseau.
-- Actualisation Eww prévue toutes les 10 minutes.
-- La première version n'est **pas encore validée visuellement** sur le PC Deepin de Pattoo.
+- Actualisation Eww toutes les 10 minutes.
+
+### Validation manuelle — 26 août 2026
+
+Pattoo a validé la branche sous Deepin 25 :
+
+- le script `updates.py` s'exécute correctement et retourne `Système à jour` avec la mention `Selon le cache APT local` ;
+- PatDesk redémarre sans erreur ;
+- la section **MISES À JOUR** s'affiche correctement entre **RÉSEAU** et **RACCOURCIS** ;
+- le rendu est propre, lisible et sans débordement ;
+- les boutons **PatSecure**, **Terminal** et **Fichiers** fonctionnent tous les trois après l'ajout du module ;
+- aucune action d'installation ou de mise à jour réseau n'est lancée par PatDesk.
+
+La branche `patdesk-maj-deepin` est donc **validée et prête à être publiée** après préparation de la documentation/version.
 
 ## Publication du site
 
-Le site **Les projets de Pattoo** existe et présente PatDesk. Après la publication de PatDesk 0.3.0, la fiche du site doit être vérifiée et, si nécessaire, mise à jour pour annoncer la version 0.3.0 et les alertes système validées. Ne publier aucune IP publique ni donnée exploitable de l'extérieur.
+Le site **Les projets de Pattoo** existe et présente PatDesk. Après la prochaine publication de PatDesk, la fiche du site devra être vérifiée et mise à jour pour annoncer la nouvelle fonction de statut des mises à jour. Ne publier aucune IP publique ni donnée exploitable de l'extérieur.
 
 ## Prochaine action précise
 
-1. Tester `patdesk-maj-deepin` sur le PC Deepin de Pattoo.
-2. Vérifier que PatDesk démarre sans erreur et que le bloc **MISES À JOUR** s'affiche correctement.
-3. Vérifier que les trois raccourcis restent fonctionnels.
-4. Ne fusionner la branche dans `main` qu'après validation manuelle.
-5. Vérifier / mettre à jour ensuite la fiche du site pour **v0.3.0** lorsque Work est de nouveau disponible.
+1. Préparer la documentation de la prochaine version avec le module **MISES À JOUR**.
+2. Comparer une dernière fois `patdesk-maj-deepin` à `main`.
+3. Fusionner dans `main` seulement après cette vérification finale.
+4. Créer un nouveau point de restauration après publication.
+5. Mettre à jour ensuite la fiche du site lorsque Work est disponible.
 
 ## Règle de fin de session
 
