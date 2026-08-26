@@ -1,0 +1,1 @@
+Le point de restauration snapshot-v0.4.0 doit pointer sur la publication 0.4.0.
