@@ -6,6 +6,10 @@
   :interval "60s"
   `date '+%A %d %B %Y'`)
 
+(defpoll weather
+  :interval "15m"
+  `$HOME/.config/patdesk/scripts/weather.py`)
+
 (defpoll cpu
   :interval "2s"
   `$HOME/.config/patdesk/scripts/cpu.sh`)
@@ -37,6 +41,10 @@
 (defpoll patsecure_status
   :interval "1m"
   `$HOME/.config/patdesk/scripts/patsecure-status.py`)
+
+(defpoll media
+  :interval "3s"
+  `$HOME/.config/patdesk/scripts/media.py`)
 
 (defwidget metric [name value bar-class]
   (box
@@ -99,7 +107,7 @@
     :x "-120px"
     :y "20px"
     :width "420px"
-    :height "1260px")
+    :height "1460px")
 
   :stacking "bg"
   :windowtype "normal"
@@ -116,6 +124,17 @@
     (label
       :class "date"
       :text date)
+
+    (box :class "separator patsecure-separator")
+
+    (label
+      :class "section-title"
+      :halign "start"
+      :text "MÉTÉO")
+
+    (literal
+      :class "weather-content"
+      :content weather)
 
     (box :class "separator")
 
@@ -185,6 +204,17 @@
     (literal
       :class "patsecure-content"
       :content patsecure_status)
+
+    (box :class "separator patsecure-separator")
+
+    (label
+      :class "section-title"
+      :halign "start"
+      :text "MUSIQUE EN COURS")
+
+    (literal
+      :class "media-content"
+      :content media)
 
     (box :class "separator shortcuts-separator")
 
