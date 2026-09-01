@@ -40,9 +40,12 @@ Ces consignes s'appliquent à tout le dépôt.
 - Ne jamais ouvrir de port, lancer de serveur réseau ou ajouter de télémétrie sans demande explicite et analyse de sécurité.
 - Ne jamais écrire en dur une adresse personnelle, un jeton, un mot de passe, un identifiant privé ou un secret.
 - Ne jamais publier de capture, journal ou configuration contenant une donnée exploitable de l'extérieur.
-- Préserver le fonctionnement entièrement local de PatDesk.
+- Préserver le fonctionnement entièrement local de PatDesk sauf pour une fonction explicitement demandée qui nécessite un accès distant, comme la météo.
+- Le module météo ne doit jamais géolocaliser l'utilisateur par IP, rechercher son IP publique, publier une ville personnelle dans GitHub ni enregistrer de coordonnées personnelles dans le dépôt. La ville doit rester dans `~/.config/patdesk/weather.conf`.
+- Les requêtes météo doivent utiliser HTTPS, être limitées aux données nécessaires et échouer proprement si le réseau est indisponible.
 - Le module de mises à jour doit rester informatif : pas de `apt update`, pas d'installation automatique et pas d'élévation de privilèges depuis PatDesk.
 - Le module PatSecure doit rester local, lire uniquement le rapport partageable et ne jamais afficher de donnée réseau ou d'identité sensible.
+- Le module musique doit rester local via MPRIS/playerctl et ne doit envoyer aucune information de lecture à un service distant.
 
 ## Environnement de référence
 
@@ -56,5 +59,7 @@ Ces consignes s'appliquent à tout le dépôt.
 
 - Python : compilation des scripts `.py`.
 - Bash : `bash -n` sur les scripts `.sh`.
-- Sécurité : absence d'appel externe ajouté, de serveur, de port ouvert, de secret et d'IP publique.
+- Sécurité : aucune recherche d'IP publique, aucun serveur, port, secret, télémétrie ou donnée personnelle publiée.
+- Météo : vérifier qu'aucune requête réseau n'est faite tant que `weather.conf` n'est pas configuré.
+- Musique : vérifier l'absence de requête réseau et le bon comportement lorsque `playerctl` ou un lecteur MPRIS est absent.
 - Interface : démarrage Eww, affichage des rubriques et test manuel des boutons sur la machine de Pattoo.
