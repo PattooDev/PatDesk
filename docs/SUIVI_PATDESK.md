@@ -11,10 +11,10 @@ Ce fichier est le carnet de bord commun à ChatGPT Work et au chat normal. Il do
 ## État publié
 
 - Dépôt : [PattooDev/PatDesk](https://github.com/PattooDev/PatDesk)
-- Version en cours de publication : **0.5.0**
-- Branche de validation : `patdesk-patsecure-status`
-- Base : `main`
-- Date de validation manuelle : **1er septembre 2026**
+- Version publiée : **0.5.0**
+- Branche publiée : `main`
+- Date de publication : **1er septembre 2026**
+- Branche de développement historique : `patdesk-patsecure-status`
 
 ## Fonctions terminées
 
@@ -75,25 +75,24 @@ Ne pas publier de capture contenant une adresse réseau locale affichée par Pat
 
 ## Publication du site
 
-Le site **Les projets de Pattoo** a été réactualisé le **1er septembre 2026** avant l'intégration du voyant PatSecure. Son déploiement Vercel en production a été vérifié.
+Le site **Les projets de Pattoo** a été réactualisé le **1er septembre 2026** pour PatSecure v0.4.0 et son déploiement Vercel en production a été vérifié.
 
-La fiche PatSecure présente **v0.4.0 stable**, les rapports privé/partageable, UFW/IPv6, la reconnaissance des services réseau et la confidentialité des diagnostics. Aucune donnée réseau personnelle n'a été publiée.
+La prochaine mise à jour du site doit annoncer **PatDesk v0.5.0** et son voyant PatSecure, sans publier de capture contenant des informations réseau locales.
 
 ## Branches historiques
 
 - `patdesk-disques-test` : historique des travaux sur les disques.
 - `patdesk-alertes-systeme` : historique des alertes système.
 - `patdesk-maj-deepin` : historique du module de statut des mises à jour.
-- `patdesk-patsecure-status` : branche de développement du voyant PatSecure ; à conserver comme historique après publication.
+- `patdesk-patsecure-status` : historique du voyant PatSecure publié en v0.5.0.
 
 Les branches `snapshot-*` servent uniquement de points de restauration.
 
 ## Prochaine action précise
 
-1. Publier PatDesk **v0.5.0** dans `main` après cette validation.
-2. Vérifier que `main` contient bien `patsecure-status.py`, le bloc Eww et les styles associés.
-3. Créer un point de restauration `snapshot-v0.5.0` après publication.
-4. Réactualiser ensuite la fiche PatDesk du site pour annoncer v0.5.0.
+1. Vérifier la présence de PatDesk v0.5.0 sur `main` et créer `snapshot-v0.5.0`.
+2. Réactualiser la fiche PatDesk du site pour annoncer le voyant PatSecure.
+3. Pour toute future évolution, repartir de `main` sur une nouvelle branche de test.
 
 ## Règle de fin de session
 
