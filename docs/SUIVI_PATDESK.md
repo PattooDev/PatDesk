@@ -68,12 +68,17 @@ Une connexion à un fournisseur météo implique, comme toute requête HTTPS, qu
 ## Vérifications déjà faites
 
 - conception des deux scripts sans clé, mot de passe ou donnée personnelle codée en dur ;
-- compilation Python locale des prototypes : OK ;
+- compilation Python des deux scripts sur la machine Deepin 25 : OK ;
 - test du mode météo sans configuration : état `Ville non configurée`, sans requête réseau ;
+- configuration locale de la ville créée avec permissions `600` ;
+- météo réelle récupérée avec succès sur la machine Deepin 25 ;
+- affichage météo réel validé côté script : condition, température, ressenti, vent, mini/maxi et probabilité de pluie ;
+- le nom de la ville de test n'est pas enregistré dans GitHub ;
 - test du mode média sans `playerctl` : état explicite et sans erreur ;
+- `playerctl` reste à installer et à tester avec un lecteur MPRIS réel ;
 - aucune modification de `main`.
 
-Le rendu Eww, la météo réelle et la détection d'un lecteur MPRIS doivent encore être validés sur la machine Deepin 25 de Pattoo.
+Le rendu Eww complet et la détection d'un lecteur MPRIS doivent encore être validés sur la machine Deepin 25 de Pattoo.
 
 ## Sécurité à préserver
 
@@ -94,11 +99,11 @@ Les branches `snapshot-*` servent uniquement de points de restauration.
 
 ## Prochaine action précise
 
-1. Tester `weather.py` et `media.py` séparément sur Deepin 25.
-2. Configurer la ville météo dans un fichier local non publié.
-3. Vérifier si `playerctl` est déjà installé et tester avec un lecteur ou navigateur MPRIS.
+1. Installer `playerctl` sur Deepin 25.
+2. Tester `playerctl` avec un lecteur ou navigateur MPRIS réel.
+3. Tester `media.py` avec une musique en lecture puis en pause.
 4. Sauvegarder la configuration PatDesk locale puis installer temporairement les fichiers de la branche.
-5. Recharger Eww et valider le rendu avant toute fusion dans `main`.
+5. Recharger Eww et valider les blocs **MÉTÉO** et **MUSIQUE EN COURS** avant toute fusion dans `main`.
 
 ## Règle de fin de session
 
