@@ -1,0 +1,7 @@
+# Exemple de configuration locale pour PatDesk.
+# Copier ce fichier vers ~/.config/patdesk/weather.conf
+# et remplacer VotreVille par la ville souhaitée.
+# Ne jamais publier votre fichier weather.conf personnel.
+
+CITY=VotreVille
+COUNTRY_CODE=FR
