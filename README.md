@@ -6,11 +6,12 @@ Il propose une alternative légère et personnalisable à Rainmeter, directement
 
 ## Version actuelle
 
-**PatDesk v0.5.0 — 1er septembre 2026**
+**PatDesk v0.6.0 — 1er septembre 2026**
 
 ## Fonctions
 
 - horloge et date en temps réel ;
+- météo locale : condition, température, ressenti, vent, mini/maxi du jour et risque de pluie ;
 - utilisation du processeur et de la mémoire RAM ;
 - liste automatique des disques physiques connectés ;
 - capacité et taux d'occupation des disques montés ;
@@ -20,14 +21,41 @@ Il propose une alternative légère et personnalisable à Rainmeter, directement
 - type d'interface, adresse IPv4 locale et débits descendant/montant ;
 - état des mises à jour disponibles d'après le cache APT local, sans lancer `apt update` ;
 - voyant **PatSecure** vert, orange, rouge ou gris selon le dernier audit partageable ;
+- musique en cours via MPRIS/playerctl : lecture/pause, lecteur, titre et artiste ;
 - raccourcis vers PatSecure, Deepin Terminal, le gestionnaire de fichiers, le site Les projets de Pattoo et ChatGPT ;
 - lancement automatique avec Deepin.
 
+## Météo
+
+Le bloc **MÉTÉO** utilise Open-Meteo par HTTPS, sans clé API et sans géolocalisation par IP.
+
+La localisation est configurée uniquement en local dans `~/.config/patdesk/weather.conf` :
+
+```text
+CITY=VotreVille
+COUNTRY_CODE=FR
+```
+
+Ce fichier personnel ne doit pas être ajouté au dépôt. Le nom de la ville n'est pas affiché dans le panneau PatDesk. Si aucune ville n'est configurée, aucune requête météo n'est envoyée.
+
+Comme pour toute requête HTTPS, le fournisseur météo voit techniquement l'adresse IP source de la connexion. PatDesk ne recherche, n'affiche ni n'enregistre cette adresse.
+
+## Musique en cours
+
+Le bloc **MUSIQUE EN COURS** utilise MPRIS avec `playerctl` et reste entièrement local.
+
+Il affiche :
+
+- lecture ou pause ;
+- lecteur détecté ;
+- titre ;
+- artiste.
+
+PatDesk privilégie un lecteur actuellement en lecture, puis un lecteur en pause. Si aucun lecteur MPRIS n'est disponible, le module affiche simplement `Aucune lecture en cours`.
+
 ## État PatSecure
 
-PatDesk affiche désormais un bloc **PATSECURE** compact entre **MISES À JOUR** et **RACCOURCIS**.
-
-Les couleurs signifient :
+Le bloc **PATSECURE** affiche quatre états :
 
 - **vert** : audit récent sans `ATTENTION` ni `ERREUR` ;
 - **orange** : au moins une `ATTENTION` ;
@@ -36,8 +64,6 @@ Les couleurs signifient :
 
 Le module `eww/scripts/patsecure-status.py` lit uniquement le dernier rapport **partageable** de PatSecure. Il n'accède jamais au rapport privé et ne lance aucun appel réseau, aucune commande `sudo` ni aucune opération de maintenance.
 
-Le rendu a été validé manuellement sous Deepin 25 le 1er septembre 2026 avec un audit réel PatSecure à `9 OK`, `0 attention`, `0 erreur`.
-
 ## Alertes visuelles
 
 - Disques : orange à partir de 75 % d'occupation, rouge à partir de 90 %.
@@ -45,8 +71,6 @@ Le rendu a été validé manuellement sous Deepin 25 le 1er septembre 2026 avec 
 - RTX 3060 : orange à partir de 75 °C, rouge à partir de 85 °C.
 - Réseau indisponible : état et débits affichés en rouge.
 - PatSecure : vert, orange, rouge ou gris selon le dernier audit partageable.
-
-Les alertes système ont été validées visuellement sous Deepin 25.
 
 ## Mises à jour Deepin
 
@@ -61,11 +85,9 @@ Ce contrôle :
 - ne demande pas les droits administrateur ;
 - est actualisé dans Eww toutes les 10 minutes.
 
-Le module a été validé manuellement sous Deepin 25 le 26 août 2026.
-
 ## Confidentialité et sécurité réseau
 
-PatDesk fonctionne localement :
+PatDesk reste conçu pour limiter les données sensibles :
 
 - aucune adresse IP publique n'est recherchée ou affichée ;
 - l'adresse réseau affichée par PatDesk est uniquement une adresse IPv4 privée de l'interface active ;
@@ -73,21 +95,20 @@ PatDesk fonctionne localement :
 - aucune adresse personnelle n'est écrite en dur dans le code ;
 - aucun port réseau n'est ouvert ;
 - aucun serveur distant n'est lancé ;
-- aucune télémétrie ou donnée personnelle n'est envoyée ;
-- l'état d'Internet provient des informations locales de NetworkManager ;
-- le module de mises à jour ne lance aucune actualisation réseau ni installation ;
-- le voyant PatSecure ne consulte que le rapport partageable et n'affiche aucune IP, MAC, nom de machine ou nom d'utilisateur.
+- aucune télémétrie n'est ajoutée ;
+- le module musique reste entièrement local ;
+- le voyant PatSecure ne consulte que le rapport partageable ;
+- seule la météo nécessite un accès HTTPS distant lorsque l'utilisateur a explicitement configuré une ville locale.
 
 ## Environnement testé
 
 - Deepin 25 ;
 - Eww 0.6.0 ;
-- Bash et Python 3 ;
+- Python 3 ;
+- `playerctl` 2.4.1 pour le module musique ;
 - processeur Intel Core i7-11700K ;
 - carte graphique NVIDIA GeForce RTX 3060 ;
 - configuration à deux écrans sous X11.
-
-Les capteurs de température restent automatiquement tolérants : une valeur de `0` est affichée si le matériel ou la commande attendue n'est pas disponible.
 
 ## Installation
 
@@ -101,6 +122,12 @@ install -m 644 eww/eww.scss "$HOME/.config/patdesk/eww.scss"
 install -m 755 eww/scripts/* "$HOME/.config/patdesk/scripts/"
 install -m 755 launch/patdesk.sh "$HOME/.config/patdesk/launch.sh"
 install -Dm 644 autostart/patdesk.desktop "$HOME/.config/autostart/patdesk.desktop"
+```
+
+Pour le module musique :
+
+```bash
+sudo apt install playerctl
 ```
 
 Lancer PatDesk :
@@ -138,7 +165,9 @@ PatDesk/
 │       ├── gpu-temp.sh
 │       ├── network.py
 │       ├── updates.py
-│       └── patsecure-status.py
+│       ├── patsecure-status.py
+│       ├── weather.py
+│       └── media.py
 ├── launch/
 │   └── patdesk.sh
 ├── autostart/
