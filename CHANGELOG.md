@@ -1,5 +1,29 @@
 # Historique des versions de PatDesk
 
+## [0.5.0] — 1er septembre 2026
+
+### Ajouté
+
+- Nouveau bloc **PATSECURE** entre **MISES À JOUR** et **RACCOURCIS**.
+- Voyant d’état à quatre couleurs : vert, orange, rouge et gris.
+- Lecture locale du dernier rapport **partageable** de PatSecure.
+- Affichage du résumé `OK / ATTENTION / ERREUR` et de l’âge du dernier audit.
+- Un audit de plus de 7 jours est signalé en gris comme audit à renouveler.
+
+### Validé
+
+- `patsecure-status.py` compile correctement avec Python 3.
+- Le dernier audit réel PatSecure est correctement reconnu : `9 OK`, `0 attention`, `0 erreur`.
+- Le bloc s’affiche correctement sous Deepin 25 avec Eww 0.6.0.
+- Le rendu a été validé visuellement : aucun débordement, raccourcis toujours visibles et disposition générale conservée.
+
+### Confidentialité et sécurité
+
+- Le module lit uniquement le rapport partageable de PatSecure.
+- Le rapport privé n’est jamais consulté.
+- Aucun appel réseau, aucun `sudo`, aucun serveur et aucune télémétrie.
+- Aucune adresse IP, adresse MAC, nom de machine ou nom d’utilisateur n’est affiché par le voyant.
+
 ## [0.4.0] — 26 août 2026
 
 ### Ajouté
