@@ -42,7 +42,7 @@ Objectif : ajouter deux blocs compacts sans modifier `main` avant validation ré
 - aucune ville personnelle ni coordonnée enregistrée dans GitHub ;
 - aucune géolocalisation par IP et aucune recherche de l'adresse IP publique ;
 - fournisseur : Open-Meteo via HTTPS, sans clé API ;
-- affichage prévu : condition, température, ressenti, vent, mini/maxi du jour et probabilité maximale de pluie ;
+- affichage : condition, température, ressenti, vent, mini/maxi du jour et probabilité maximale de pluie ;
 - actualisation Eww toutes les 15 minutes ;
 - si aucune ville n'est configurée, aucune requête météo n'est envoyée.
 
@@ -53,7 +53,7 @@ Une connexion à un fournisseur météo implique, comme toute requête HTTPS, qu
 - script `eww/scripts/media.py` ;
 - lecture uniquement locale via MPRIS et `playerctl` ;
 - préférence au lecteur actuellement en lecture, puis à un lecteur en pause ;
-- affichage prévu : lecture/pause, lecteur, titre et artiste ;
+- affichage : lecture/pause, lecteur, titre et artiste ;
 - aucune information musicale envoyée sur Internet ;
 - actualisation Eww toutes les 3 secondes ;
 - comportement propre si `playerctl` ou un lecteur MPRIS est absent.
@@ -67,18 +67,21 @@ Une connexion à un fournisseur météo implique, comme toute requête HTTPS, qu
 
 ## Vérifications déjà faites
 
-- conception des deux scripts sans clé, mot de passe ou donnée personnelle codée en dur ;
 - compilation Python des deux scripts sur la machine Deepin 25 : OK ;
-- test du mode météo sans configuration : état `Ville non configurée`, sans requête réseau ;
-- configuration locale de la ville créée avec permissions `600` ;
-- météo réelle récupérée avec succès sur la machine Deepin 25 ;
-- affichage météo réel validé côté script : condition, température, ressenti, vent, mini/maxi et probabilité de pluie ;
-- le nom de la ville de test n'est pas enregistré dans GitHub ;
-- test du mode média sans `playerctl` : état explicite et sans erreur ;
-- `playerctl` reste à installer et à tester avec un lecteur MPRIS réel ;
+- mode météo sans configuration : `Ville non configurée`, sans requête réseau ;
+- configuration météo locale créée avec permissions `600` ;
+- météo réelle récupérée avec succès sous Deepin 25 ;
+- sortie météo réelle validée : condition, température, ressenti, vent, mini/maxi et probabilité de pluie ;
+- la ville personnelle de test n'est pas enregistrée dans GitHub ;
+- mode média sans lecteur MPRIS : `Aucune lecture en cours`, sans erreur ;
+- `playerctl` 2.4.1 disponible sur la machine ;
+- VLC détecté via MPRIS ;
+- état `Playing` détecté correctement ;
+- titre et artiste réels remontés correctement par `media.py` ;
+- lecteur `vlc` identifié et affiché ;
 - aucune modification de `main`.
 
-Le rendu Eww complet et la détection d'un lecteur MPRIS doivent encore être validés sur la machine Deepin 25 de Pattoo.
+Les moteurs météo et musique sont donc validés séparément sur la machine réelle. Le rendu Eww complet doit encore être validé avant toute fusion dans `main`.
 
 ## Sécurité à préserver
 
@@ -99,11 +102,12 @@ Les branches `snapshot-*` servent uniquement de points de restauration.
 
 ## Prochaine action précise
 
-1. Installer `playerctl` sur Deepin 25.
-2. Tester `playerctl` avec un lecteur ou navigateur MPRIS réel.
-3. Tester `media.py` avec une musique en lecture puis en pause.
-4. Sauvegarder la configuration PatDesk locale puis installer temporairement les fichiers de la branche.
-5. Recharger Eww et valider les blocs **MÉTÉO** et **MUSIQUE EN COURS** avant toute fusion dans `main`.
+1. Sauvegarder la configuration PatDesk locale actuelle.
+2. Installer temporairement `eww.yuck`, `weather.py` et `media.py` depuis la branche `patdesk-meteo-musique`.
+3. Conserver `weather.conf` uniquement en local.
+4. Recharger Eww sous Deepin 25.
+5. Vérifier météo, musique, hauteur totale, raccourcis et absence de débordement.
+6. Ne fusionner dans `main` qu'après validation visuelle explicite.
 
 ## Règle de fin de session
 
