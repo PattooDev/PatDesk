@@ -14,9 +14,9 @@ Ce fichier est le carnet de bord commun à ChatGPT Work et au chat normal. Il do
 - Version publiée : **0.5.0**
 - Branche publiée : `main`
 - Date de publication : **1er septembre 2026**
-- Branche de développement historique : `patdesk-patsecure-status`
+- Point de restauration : `snapshot-v0.5.0`
 
-## Fonctions terminées
+## Fonctions publiées
 
 - Horloge et date.
 - Mesures CPU et RAM.
@@ -24,60 +24,64 @@ Ce fichier est le carnet de bord commun à ChatGPT Work et au chat normal. Il do
 - Températures CPU Intel et GPU NVIDIA.
 - Alertes visuelles vertes, orange et rouges pour les disques et températures.
 - État du réseau, interface active, IPv4 locale privée et débits.
-- Alerte visuelle rouge lorsque le réseau est indisponible.
 - Bloc **MISES À JOUR** basé sur le cache APT local.
 - Bloc **PATSECURE** avec voyant vert, orange, rouge ou gris.
 - Raccourcis vers PatSecure, Deepin Terminal, le gestionnaire de fichiers, le site Les projets de Pattoo et ChatGPT.
 - Démarrage automatique sous Deepin.
 
-## PatDesk 0.5.0 — voyant PatSecure
+## Travail en cours — PatDesk v0.6.0
 
-Le bloc **PATSECURE** est placé entre **MISES À JOUR** et **RACCOURCIS**.
+Branche de test : `patdesk-meteo-musique`.
 
-États :
+Objectif : ajouter deux blocs compacts sans modifier `main` avant validation réelle :
 
-- vert : audit récent sans `ATTENTION` ni `ERREUR` ;
-- orange : au moins une `ATTENTION` ;
-- rouge : au moins une `ERREUR` ;
-- gris : rapport absent, état indisponible ou audit de plus de 7 jours.
+### MÉTÉO
 
-Le script `eww/scripts/patsecure-status.py` :
+- script `eww/scripts/weather.py` ;
+- ville configurée uniquement dans `~/.config/patdesk/weather.conf` ;
+- aucune ville personnelle ni coordonnée enregistrée dans GitHub ;
+- aucune géolocalisation par IP et aucune recherche de l'adresse IP publique ;
+- fournisseur : Open-Meteo via HTTPS, sans clé API ;
+- affichage prévu : condition, température, ressenti, vent, mini/maxi du jour et probabilité maximale de pluie ;
+- actualisation Eww toutes les 15 minutes ;
+- si aucune ville n'est configurée, aucune requête météo n'est envoyée.
 
-- lit uniquement le dernier rapport **partageable** de PatSecure ;
-- ne lit jamais le rapport privé ;
-- ne lance aucune commande réseau ;
-- ne demande pas `sudo` ;
-- n'affiche aucune IP, MAC, nom de machine ou nom d'utilisateur ;
-- extrait uniquement le résumé `OK / ATTENTION / ERREUR / INFO` et l'âge du rapport.
+Une connexion à un fournisseur météo implique, comme toute requête HTTPS, que ce fournisseur voit techniquement l'adresse IP source de la connexion. PatDesk ne la recherche, ne l'affiche et ne l'enregistre jamais.
 
-## Validation manuelle — 1er septembre 2026
+### MUSIQUE EN COURS
 
-Validation réelle sous Deepin 25 avec Eww 0.6.0 :
+- script `eww/scripts/media.py` ;
+- lecture uniquement locale via MPRIS et `playerctl` ;
+- préférence au lecteur actuellement en lecture, puis à un lecteur en pause ;
+- affichage prévu : lecture/pause, lecteur, titre et artiste ;
+- aucune information musicale envoyée sur Internet ;
+- actualisation Eww toutes les 3 secondes ;
+- comportement propre si `playerctl` ou un lecteur MPRIS est absent.
 
-- `patsecure-status.py` compile correctement avec Python 3 ;
-- le dernier audit PatSecure réel est détecté comme `9 OK · 0 attention · 0 erreur` ;
-- le bloc **PATSECURE** s'affiche en vert avec `État OK` ;
-- le dernier audit est correctement indiqué comme effectué aujourd'hui ;
-- le bloc est lisible et visuellement cohérent avec les autres sections ;
-- aucun débordement vertical observé ;
-- les raccourcis restent visibles et la disposition générale de PatDesk est conservée ;
-- rendu explicitement validé par Pattoo.
+### Interface
+
+- bloc **MÉTÉO** sous la date ;
+- bloc **MUSIQUE EN COURS** entre **PATSECURE** et **RACCOURCIS** ;
+- styles existants réutilisés pour conserver le rendu validé de PatDesk ;
+- hauteur de fenêtre de test portée de `1260px` à `1460px`, sans modifier l'ancrage supérieur.
+
+## Vérifications déjà faites
+
+- conception des deux scripts sans clé, mot de passe ou donnée personnelle codée en dur ;
+- compilation Python locale des prototypes : OK ;
+- test du mode météo sans configuration : état `Ville non configurée`, sans requête réseau ;
+- test du mode média sans `playerctl` : état explicite et sans erreur ;
+- aucune modification de `main`.
+
+Le rendu Eww, la météo réelle et la détection d'un lecteur MPRIS doivent encore être validés sur la machine Deepin 25 de Pattoo.
 
 ## Sécurité à préserver
 
-PatDesk doit rester local. Aucune adresse IP publique, donnée personnelle, télémétrie, cible distante fixe ou information exploitable de l'extérieur ne doit être ajoutée au code, à la documentation, au site ou aux captures.
+PatDesk ne doit jamais rechercher, afficher ou publier l'adresse IP publique. Aucune capture contenant une information réseau locale ne doit être publiée.
 
-Le module de mises à jour reste strictement informatif : pas de `apt update`, pas d'installation automatique et pas d'élévation de privilèges depuis PatDesk.
+Le fichier `weather.conf` personnel reste strictement local et ne doit jamais être ajouté au dépôt.
 
-Le module PatSecure reste strictement local et ne consulte que le rapport partageable.
-
-Ne pas publier de capture contenant une adresse réseau locale affichée par PatDesk.
-
-## Publication du site
-
-Le site **Les projets de Pattoo** a été réactualisé le **1er septembre 2026** pour PatSecure v0.4.0 et son déploiement Vercel en production a été vérifié.
-
-La prochaine mise à jour du site doit annoncer **PatDesk v0.5.0** et son voyant PatSecure, sans publier de capture contenant des informations réseau locales.
+Le module météo est la seule nouvelle fonction de cette branche qui effectue un accès distant, uniquement lorsque la ville a été explicitement configurée. Le module musique reste entièrement local.
 
 ## Branches historiques
 
@@ -90,9 +94,11 @@ Les branches `snapshot-*` servent uniquement de points de restauration.
 
 ## Prochaine action précise
 
-1. Vérifier la présence de PatDesk v0.5.0 sur `main` et créer `snapshot-v0.5.0`.
-2. Réactualiser la fiche PatDesk du site pour annoncer le voyant PatSecure.
-3. Pour toute future évolution, repartir de `main` sur une nouvelle branche de test.
+1. Tester `weather.py` et `media.py` séparément sur Deepin 25.
+2. Configurer la ville météo dans un fichier local non publié.
+3. Vérifier si `playerctl` est déjà installé et tester avec un lecteur ou navigateur MPRIS.
+4. Sauvegarder la configuration PatDesk locale puis installer temporairement les fichiers de la branche.
+5. Recharger Eww et valider le rendu avant toute fusion dans `main`.
 
 ## Règle de fin de session
 
