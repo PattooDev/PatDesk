@@ -36,22 +36,14 @@ def read_config():
 def get_json(url):
     request = urllib.request.Request(
         url,
-        headers={
-            "User-Agent": USER_AGENT,
-            "Accept": "application/json",
-        },
+        headers={"User-Agent": USER_AGENT, "Accept": "application/json"},
     )
     with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
         return json.load(response)
 
 
 def geocode(city, country_code=None):
-    params = {
-        "name": city,
-        "count": 5,
-        "language": "fr",
-        "format": "json",
-    }
+    params = {"name": city, "count": 5, "language": "fr", "format": "json"}
     data = get_json(
         "https://geocoding-api.open-meteo.com/v1/search?"
         + urllib.parse.urlencode(params)
@@ -60,7 +52,8 @@ def geocode(city, country_code=None):
     if country_code:
         wanted = country_code.upper()
         matching = [
-            item for item in results
+            item
+            for item in results
             if str(item.get("country_code", "")).upper() == wanted
         ]
         if matching:
@@ -79,21 +72,8 @@ def fetch_weather(latitude, longitude):
     params = {
         "latitude": latitude,
         "longitude": longitude,
-        "current": ",".join(
-            [
-                "temperature_2m",
-                "apparent_temperature",
-                "weather_code",
-                "wind_speed_10m",
-            ]
-        ),
-        "daily": ",".join(
-            [
-                "temperature_2m_max",
-                "temperature_2m_min",
-                "precipitation_probability_max",
-            ]
-        ),
+        "current": "temperature_2m,apparent_temperature,weather_code,wind_speed_10m",
+        "daily": "temperature_2m_max,temperature_2m_min,precipitation_probability_max",
         "timezone": "auto",
         "forecast_days": 1,
     }
@@ -172,12 +152,11 @@ def render(location, data):
     temp_text = f"{temp}°C" if temp is not None else "—"
     apparent_text = f"{apparent}°C" if apparent is not None else "—"
     wind_text = f"{wind} km/h" if wind is not None else "—"
-    range_text = (
-        f"{tmin}–{tmax}°C"
-        if tmin is not None and tmax is not None
-        else "—"
-    )
+    range_text = f"{tmin}–{tmax}°C" if tmin is not None and tmax is not None else "—"
     rain_text = f"{rain}%" if rain is not None else "—"
+    details = f"Ressenti {apparent_text} · vent {wind_text}"
+    location_name = location.get("name") or ""
+    note = f"Aujourd’hui {range_text} · pluie {rain_text} · {location_name}"
 
     return (
         '(box :orientation "vertical" :class "patsecure-info patsecure-ok" :space-evenly false '
@@ -185,8 +164,8 @@ def render(location, data):
         f'(label :class "patsecure-dot" :text {yuck_string(icon)}) '
         f'(label :class "patsecure-state" :text {yuck_string(temp_text)}) '
         f'(label :class "patsecure-counts" :halign "start" :hexpand true :text {yuck_string(condition)})) '
-        f'(label :class "patsecure-counts" :halign "start" :text {yuck_string(f"Ressenti {apparent_text} · vent {wind_text}")}) '
-        f'(label :class "patsecure-note" :halign "start" :text {yuck_string(f"Aujourd’hui {range_text} · pluie {rain_text} · {location["name"]}")}))'
+        f'(label :class "patsecure-counts" :halign "start" :text {yuck_string(details)}) '
+        f'(label :class "patsecure-note" :halign "start" :text {yuck_string(note)}))'
     )
 
 
