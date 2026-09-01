@@ -1,5 +1,35 @@
 # Historique des versions de PatDesk
 
+## [0.6.0] — 1er septembre 2026
+
+### Ajouté
+
+- Nouveau bloc **MÉTÉO** sous la date.
+- Météo via Open-Meteo par HTTPS, sans clé API et sans géolocalisation par IP.
+- Configuration de la ville uniquement dans `~/.config/patdesk/weather.conf`.
+- Affichage de la condition, température, ressenti, vent, mini/maxi du jour et probabilité de pluie.
+- Nouveau bloc **MUSIQUE EN COURS** via MPRIS/playerctl.
+- Affichage lecture/pause, lecteur, titre et artiste.
+- Sélection prioritaire d'un lecteur en cours de lecture, puis d'un lecteur en pause.
+
+### Validé
+
+- `weather.py` et `media.py` compilent correctement avec Python 3 sous Deepin 25.
+- Météo réelle récupérée et affichée correctement sur la machine de test.
+- VLC détecté via MPRIS avec état `Playing`, titre et artiste correctement remontés.
+- Le comportement sans lecteur MPRIS est propre et sans erreur.
+- Le rendu Eww complet a été validé visuellement sous Deepin 25.
+- Les nouveaux blocs s'intègrent sans débordement vertical et les raccourcis restent visibles.
+
+### Confidentialité et sécurité
+
+- Aucune adresse IP publique n'est recherchée, affichée ou enregistrée.
+- Le nom de la ville n'est pas enregistré dans GitHub et n'est pas affiché dans le panneau final.
+- Le fichier `weather.conf` reste strictement local.
+- Aucune géolocalisation par IP.
+- Le module musique reste entièrement local et n'envoie aucune information de lecture sur Internet.
+- Le module météo n'effectue aucune requête tant qu'aucune ville n'est configurée.
+
 ## [0.5.0] — 1er septembre 2026
 
 ### Ajouté
