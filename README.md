@@ -6,7 +6,7 @@ Il propose une alternative légère et personnalisable à Rainmeter, directement
 
 ## Version actuelle
 
-**PatDesk v0.4.0 — 26 août 2026**
+**PatDesk v0.5.0 — 1er septembre 2026**
 
 ## Fonctions
 
@@ -19,8 +19,24 @@ Il propose une alternative légère et personnalisable à Rainmeter, directement
 - état de la connexion réseau ;
 - type d'interface, adresse IPv4 locale et débits descendant/montant ;
 - état des mises à jour disponibles d'après le cache APT local, sans lancer `apt update` ;
-- raccourcis vers PatSecure, Deepin Terminal et le gestionnaire de fichiers ;
+- voyant **PatSecure** vert, orange, rouge ou gris selon le dernier audit partageable ;
+- raccourcis vers PatSecure, Deepin Terminal, le gestionnaire de fichiers, le site Les projets de Pattoo et ChatGPT ;
 - lancement automatique avec Deepin.
+
+## État PatSecure
+
+PatDesk affiche désormais un bloc **PATSECURE** compact entre **MISES À JOUR** et **RACCOURCIS**.
+
+Les couleurs signifient :
+
+- **vert** : audit récent sans `ATTENTION` ni `ERREUR` ;
+- **orange** : au moins une `ATTENTION` ;
+- **rouge** : au moins une `ERREUR` ;
+- **gris** : aucun rapport récent, état indisponible ou audit de plus de 7 jours.
+
+Le module `eww/scripts/patsecure-status.py` lit uniquement le dernier rapport **partageable** de PatSecure. Il n'accède jamais au rapport privé et ne lance aucun appel réseau, aucune commande `sudo` ni aucune opération de maintenance.
+
+Le rendu a été validé manuellement sous Deepin 25 le 1er septembre 2026 avec un audit réel PatSecure à `9 OK`, `0 attention`, `0 erreur`.
 
 ## Alertes visuelles
 
@@ -28,8 +44,9 @@ Il propose une alternative légère et personnalisable à Rainmeter, directement
 - Processeur : orange à partir de 70 °C, rouge à partir de 85 °C.
 - RTX 3060 : orange à partir de 75 °C, rouge à partir de 85 °C.
 - Réseau indisponible : état et débits affichés en rouge.
+- PatSecure : vert, orange, rouge ou gris selon le dernier audit partageable.
 
-Ces alertes ont été validées visuellement sous Deepin 25 le 26 août 2026.
+Les alertes système ont été validées visuellement sous Deepin 25.
 
 ## Mises à jour Deepin
 
@@ -51,14 +68,15 @@ Le module a été validé manuellement sous Deepin 25 le 26 août 2026.
 PatDesk fonctionne localement :
 
 - aucune adresse IP publique n'est recherchée ou affichée ;
-- l'adresse affichée est uniquement une adresse IPv4 privée de l'interface active ;
+- l'adresse réseau affichée par PatDesk est uniquement une adresse IPv4 privée de l'interface active ;
 - une éventuelle adresse IPv4 publique directement attribuée est automatiquement masquée ;
 - aucune adresse personnelle n'est écrite en dur dans le code ;
 - aucun port réseau n'est ouvert ;
 - aucun serveur distant n'est lancé ;
 - aucune télémétrie ou donnée personnelle n'est envoyée ;
 - l'état d'Internet provient des informations locales de NetworkManager ;
-- le module de mises à jour ne lance aucune actualisation réseau ni installation.
+- le module de mises à jour ne lance aucune actualisation réseau ni installation ;
+- le voyant PatSecure ne consulte que le rapport partageable et n'affiche aucune IP, MAC, nom de machine ou nom d'utilisateur.
 
 ## Environnement testé
 
@@ -119,7 +137,8 @@ PatDesk/
 │       ├── cpu-temp.sh
 │       ├── gpu-temp.sh
 │       ├── network.py
-│       └── updates.py
+│       ├── updates.py
+│       └── patsecure-status.py
 ├── launch/
 │   └── patdesk.sh
 ├── autostart/
