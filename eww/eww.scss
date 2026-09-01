@@ -346,6 +346,49 @@
   color: #8b949e;
 }
 
+.weather-info {
+  margin-top: 2px;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: rgba(88, 166, 255, 0.07);
+}
+
+.weather-status {
+  margin-bottom: 3px;
+}
+
+.weather-icon {
+  font-size: 16px;
+  color: #79c0ff;
+}
+
+.weather-temp {
+  font-size: 14px;
+  font-weight: bold;
+  color: #79c0ff;
+}
+
+.weather-condition {
+  font-size: 12px;
+  color: #c8d1dc;
+}
+
+.weather-details {
+  margin-top: 2px;
+  font-size: 12px;
+  color: #c8d1dc;
+}
+
+.weather-note {
+  margin-top: 2px;
+  font-size: 11px;
+  color: #8b949e;
+}
+
+.weather-info.weather-stale .weather-temp {
+  color: #8b949e;
+}
+
 .shortcuts-separator {
   margin-top: 14px;
   margin-bottom: 13px;
