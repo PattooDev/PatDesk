@@ -62,7 +62,6 @@ def geocode(city, country_code=None):
         return None
     item = results[0]
     return {
-        "name": item.get("name") or city,
         "latitude": item.get("latitude"),
         "longitude": item.get("longitude"),
     }
@@ -123,21 +122,21 @@ def rounded(value):
 
 def render_unconfigured():
     return (
-        '(box :orientation "vertical" :class "patsecure-info patsecure-stale" :space-evenly false '
-        '(label :class "patsecure-state" :halign "start" :text "Ville non configurée") '
-        '(label :class "patsecure-note" :halign "start" :text "Configuration locale requise"))'
+        '(box :orientation "vertical" :class "weather-info weather-stale" :space-evenly false '
+        '(label :class "weather-temp" :halign "start" :text "Ville non configurée") '
+        '(label :class "weather-note" :halign "start" :text "Configuration locale requise"))'
     )
 
 
 def render_error():
     return (
-        '(box :orientation "vertical" :class "patsecure-info patsecure-stale" :space-evenly false '
-        '(label :class "patsecure-state" :halign "start" :text "Météo indisponible") '
-        '(label :class "patsecure-note" :halign "start" :text "Nouvel essai automatique plus tard"))'
+        '(box :orientation "vertical" :class "weather-info weather-stale" :space-evenly false '
+        '(label :class "weather-temp" :halign "start" :text "Météo indisponible") '
+        '(label :class "weather-note" :halign "start" :text "Nouvel essai automatique plus tard"))'
     )
 
 
-def render(location, data):
+def render(data):
     current = data.get("current") or {}
     daily = data.get("daily") or {}
 
@@ -155,17 +154,16 @@ def render(location, data):
     range_text = f"{tmin}–{tmax}°C" if tmin is not None and tmax is not None else "—"
     rain_text = f"{rain}%" if rain is not None else "—"
     details = f"Ressenti {apparent_text} · vent {wind_text}"
-    location_name = location.get("name") or ""
-    note = f"Aujourd’hui {range_text} · pluie {rain_text} · {location_name}"
+    note = f"Aujourd’hui {range_text} · pluie {rain_text}"
 
     return (
-        '(box :orientation "vertical" :class "patsecure-info patsecure-ok" :space-evenly false '
-        '(box :orientation "horizontal" :class "patsecure-status" :space-evenly false '
-        f'(label :class "patsecure-dot" :text {yuck_string(icon)}) '
-        f'(label :class "patsecure-state" :text {yuck_string(temp_text)}) '
-        f'(label :class "patsecure-counts" :halign "start" :hexpand true :text {yuck_string(condition)})) '
-        f'(label :class "patsecure-counts" :halign "start" :text {yuck_string(details)}) '
-        f'(label :class "patsecure-note" :halign "start" :text {yuck_string(note)}))'
+        '(box :orientation "vertical" :class "weather-info weather-current" :space-evenly false '
+        '(box :orientation "horizontal" :class "weather-status" :space-evenly false :spacing 8 '
+        f'(label :class "weather-icon" :text {yuck_string(icon)}) '
+        f'(label :class "weather-temp" :text {yuck_string(temp_text)}) '
+        f'(label :class "weather-condition" :halign "start" :hexpand true :text {yuck_string(condition)})) '
+        f'(label :class "weather-details" :halign "start" :text {yuck_string(details)}) '
+        f'(label :class "weather-note" :halign "start" :text {yuck_string(note)}))'
     )
 
 
@@ -182,7 +180,7 @@ def main():
             print(render_error())
             return
         data = fetch_weather(location["latitude"], location["longitude"])
-        print(render(location, data))
+        print(render(data))
     except (OSError, ValueError, urllib.error.URLError, TimeoutError):
         print(render_error())
 
