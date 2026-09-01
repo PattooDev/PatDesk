@@ -12,10 +12,11 @@ Ces consignes s'appliquent à tout le dépôt.
 
 - Dépôt : `PattooDev/PatDesk`.
 - Branche publiée : `main`.
-- Version publiée au 26 août 2026 : `v0.4.0`.
+- Version publiée au 1er septembre 2026 : `v0.5.0`.
 - `docs/SUIVI_PATDESK.md` contient l'état courant, les validations et la prochaine étape.
 - La branche `patdesk-alertes-systeme` est historique après fusion dans `main`.
 - La branche `patdesk-maj-deepin` est historique après publication du module de statut des mises à jour dans `main`.
+- La branche `patdesk-patsecure-status` est historique après publication du voyant PatSecure dans `main`.
 - La branche `patdesk-disques-test` est historique. Ne pas fusionner ni supprimer ces branches sans demande explicite.
 - Les branches `snapshot-*` sont des points de restauration et ne servent jamais au développement.
 
@@ -41,6 +42,7 @@ Ces consignes s'appliquent à tout le dépôt.
 - Ne jamais publier de capture, journal ou configuration contenant une donnée exploitable de l'extérieur.
 - Préserver le fonctionnement entièrement local de PatDesk.
 - Le module de mises à jour doit rester informatif : pas de `apt update`, pas d'installation automatique et pas d'élévation de privilèges depuis PatDesk.
+- Le module PatSecure doit rester local, lire uniquement le rapport partageable et ne jamais afficher de donnée réseau ou d'identité sensible.
 
 ## Environnement de référence
 
