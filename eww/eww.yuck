@@ -34,6 +34,10 @@
   :interval "10m"
   `$HOME/.config/patdesk/scripts/updates.py`)
 
+(defpoll patsecure_status
+  :interval "1m"
+  `$HOME/.config/patdesk/scripts/patsecure-status.py`)
+
 (defwidget metric [name value bar-class]
   (box
     :orientation "vertical"
@@ -170,6 +174,17 @@
     (literal
       :class "updates-content"
       :content updates)
+
+    (box :class "separator patsecure-separator")
+
+    (label
+      :class "section-title"
+      :halign "start"
+      :text "PATSECURE")
+
+    (literal
+      :class "patsecure-content"
+      :content patsecure_status)
 
     (box :class "separator shortcuts-separator")
 
